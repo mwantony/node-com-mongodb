@@ -5,6 +5,7 @@ const livrosRouter = express.Router();
 
 livrosRouter
   .get("/livros", (req, res) => LivroController.listarLivros(req, res))
+  .get("/livros/busca", (req, res) => LivroController.listarLivroPorEditora(req, res))
   .get("/livros/:idLivro", (req, res) =>
     LivroController.listaLivroPorId(req, res)
   )
