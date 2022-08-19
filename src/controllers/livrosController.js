@@ -1,5 +1,4 @@
 import livros from "../models/Livro.js";
-
 class LivroController {
   static listarLivros = (req, res) => {
     livros.find((err, livros) => {
@@ -14,7 +13,7 @@ class LivroController {
         res.status(200).json(livro)
         return
       }
-      res.status(404).json({message: err `Não foi possível achar o livro de id ${idLivro}`})
+      res.status(404).json({message: err.message `Não foi possível achar o livro de id ${idLivro}`})
     })
   }
 
@@ -39,6 +38,17 @@ class LivroController {
       res.status(500).send({message: err.message `Livro ${idLivro} não atualizado`})
     })
 
+  }
+
+  static excluirLivro = (req, res) => {
+    const {idLivro} = req.params
+    livros.findByIdAndDelete(idLivro, (err) => {
+      if(!err) {
+        res.status(200).send({message: `Livro de id ${idLivro} deletado com sucesso.`})
+        return
+      }
+      res.status(500).send({message: err.message`Impossível deletar livro de id ${idLivro}`})
+    })
   }
 }
 
