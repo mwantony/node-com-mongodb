@@ -12,31 +12,6 @@ app.use(express.json())
 
 routes(app)
 
-/* const livros = [
-  {
-    id: 1,
-    titulo: 'Senhor dos aneis'
-  },
-  {
-    id: 2,
-    titulo: 'O Hobbit'
-  }
-] */
-
-app.get('/', (req, res) => {
-  res.status(200).send('Curso de Node')
-}) 
-
-
-app.put('/livros/:idLivro', (req, res) => {
-  let index = buscaLivro(req.params.idLivro)
-  livros[index].titulo = req.body.titulo 
-  res.json(livros)
-})
-app.get('/livros/:idLivro', (req, res) => {
-  let index = buscaLivro(req.params.idLivro)
-  res.json(livros[index])
-})
 
 app.delete('/livros/:idLivro', (req, res) => {
   let {idLivro} = req.params
